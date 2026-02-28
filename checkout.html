@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout | Al Qalam Book Center</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .checkout-page {
+            padding: 40px 0 80px;
+            background-color: var(--bg-main);
+        }
+
+        .checkout-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .checkout-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .checkout-section {
+            background-color: white;
+            border-radius: var(--radius-md);
+            padding: 30px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .checkout-section h2 {
+            font-size: 1.3rem;
+            border-bottom: 2px solid var(--light-blue);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checkout-section h2 i {
+            color: var(--primary-green);
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--primary-blue);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(26, 82, 118, 0.1);
+        }
+
+        /* Order Summary */
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .summary-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .summary-item-info {
+            display: flex;
+            gap: 15px;
+        }
+
+        .summary-item-img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            background: var(--bg-main);
+            border-radius: var(--radius-sm);
+            padding: 5px;
+        }
+
+        .summary-item-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+        }
+
+        .summary-item-qty {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .summary-item-price {
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .summary-totals {
+            margin-top: 25px;
+            background-color: var(--light-blue);
+            padding: 20px;
+            border-radius: var(--radius-sm);
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .total-row.grand-total {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            font-family: var(--font-heading);
+        }
+
+        /* Payment Methods */
+        .payment-option {
+            border: 1px solid var(--border-color);
+            padding: 15px 20px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .payment-option.active {
+            border-color: var(--primary-green);
+            background-color: var(--light-green);
+        }
+
+        .payment-option input {
+            transform: scale(1.2);
+        }
+
+        .payment-info {
+            font-weight: 600;
+        }
+
+        .payment-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 20px;
+        }
+
+        .secure-badge i {
+            color: var(--primary-green);
+        }
+
+        @media (max-width: 992px) {
+            .checkout-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Simple Header for Checkout -->
+    <header class="header">
+        <div class="container header-inner" style="justify-content: center;">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fa-solid fa-book-open-reader"></i></div>
+                <div class="logo-text">
+                    <h1>Al Qalam</h1>
+                    <span>Book Center</span>
+                </div>
+            </a>
+        </div>
+    </header>
+
+    <main class="checkout-page">
+        <div class="container">
+            <div class="checkout-header">
+                <h1>Secure Checkout</h1>
+                <p>Complete your order for fast delivery in Chunian and surrounding areas.</p>
+            </div>
+
+            <form id="checkoutForm" class="checkout-grid">
+
+                <!-- Left Column: Forms -->
+                <div class="checkout-details">
+
+                    <div class="checkout-section">
+                        <h2><i class="fa-regular fa-address-card"></i> Contact Information</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" required placeholder="Ali">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" required placeholder="Raza">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number (WhatsApp preferred)</label>
+                                <input type="tel" id="phone" required placeholder="0300 1234567">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address (Optional)</label>
+                                <input type="email" id="email" placeholder="ali@example.com">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="checkout-section">
+                        <h2><i class="fa-solid fa-truck-fast"></i> Shipping Address</h2>
+                        <div class="form-group">
+                            <label for="address">Street Address</label>
+                            <input type="text" id="address" required placeholder="House #, Street name, Area">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <!-- Setting Chunian as default since it's local -->
+                                <select id="city" required>
+                                    <option value="Chunian">Chunian (Local)</option>
+                                    <option value="Pattoki">Pattoki</option>
+                                    <option value="Kasur">Kasur</option>
+                                    <option value="Lahore">Lahore</option>
+                                    <option value="Other">Other City</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="zip">Postal Code (Optional)</label>
+                                <input type="text" id="zip" placeholder="49500">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="checkout-section">
+                        <h2><i class="fa-solid fa-wallet"></i> Payment Method</h2>
+
+                        <label class="payment-option active">
+                            <input type="radio" name="payment" value="cod" checked>
+                            <span class="payment-info">
+                                Cash on Delivery (COD)
+                                <span class="payment-desc">Pay with cash upon delivery. Recommended.</span>
+                            </span>
+                        </label>
+
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="easypaisa">
+                            <span class="payment-info">
+                                Easypaisa / JazzCash
+                                <span class="payment-desc">Send payment directly to our local agent number.</span>
+                            </span>
+                        </label>
+                    </div>
+
+                </div>
+
+                <!-- Right Column: Order Summary -->
+                <div class="checkout-summary">
+                    <div class="checkout-section">
+                        <h2><i class="fa-solid fa-clipboard-list"></i> Order Summary</h2>
+
+                        <div id="checkoutItemsList">
+                            <!-- Items populated by JS -->
+                            <div class="text-center text-muted py-4">Loading your cart...</div>
+                        </div>
+
+                        <div class="summary-totals">
+                            <div class="total-row">
+                                <span>Subtotal</span>
+                                <span id="checkoutSubtotal">Rs 0</span>
+                            </div>
+                            <div class="total-row">
+                                <span>Delivery Charges</span>
+                                <span id="checkoutDelivery">Rs 0</span>
+                            </div>
+                            <div class="total-row grand-total">
+                                <span>Total to Pay</span>
+                                <span id="checkoutGrandTotal">Rs 0</span>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block btn-lg mt-4 w-100" style="width: 100%;">
+                            Place Order
+                        </button>
+
+                        <div class="secure-badge">
+                            <i class="fa-solid fa-lock"></i>
+                            <span>Your data is protected and secure.</span>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer" style="padding: 30px 0;">
+        <div class="container text-center">
+            <p style="color: #bdc3c7;">&copy; 2026 Al Qalam Book Center. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Checkout specific logic extending script.js state
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load cart from localStorage or pass from parent window state
+            const cartData = JSON.parse(localStorage.getItem('alQalamCart')) || [];
+
+            const listEl = document.getElementById('checkoutItemsList');
+            const subTotalEl = document.getElementById('checkoutSubtotal');
+            const deliveryEl = document.getElementById('checkoutDelivery');
+            const grandTotalEl = document.getElementById('checkoutGrandTotal');
+            const citySelect = document.getElementById('city');
+
+            // Mock delivery rules
+            const deliveryRules = {
+                'Chunian': 0, // Free local delivery
+                'Pattoki': 150,
+                'Kasur': 250,
+                'Lahore': 300,
+                'Other': 400
+            };
+
+            function renderSummary() {
+                if (cartData.length === 0) {
+                    listEl.innerHTML = '<p class="text-center">Your cart is empty. <br><a href="index.html" class="text-highlight">Back to Shop</a></p>';
+                    return;
+                }
+
+                listEl.innerHTML = cartData.map(item => `
+                    <div class="summary-item">
+                        <div class="summary-item-info">
+                            <img src="${item.img}" alt="${item.title}" class="summary-item-img">
+                            <div>
+                                <div class="summary-item-title">${item.title}</div>
+                                <div class="summary-item-qty">Qty: ${item.quantity}</div>
+                            </div>
+                        </div>
+                        <div class="summary-item-price">Rs ${(item.price * item.quantity).toLocaleString()}</div>
+                    </div>
+                `).join('');
+
+                calculateTotals();
+            }
+
+            function calculateTotals() {
+                const subtotal = cartData.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const city = citySelect.value;
+                const delivery = deliveryRules[city] || 400;
+
+                subTotalEl.textContent = `Rs ${subtotal.toLocaleString()}`;
+                deliveryEl.textContent = delivery === 0 ? 'Free' : `Rs ${delivery.toLocaleString()}`;
+
+                const grandTotal = subtotal + delivery;
+                grandTotalEl.textContent = `Rs ${grandTotal.toLocaleString()}`;
+            }
+
+            // Listen for city change to update delivery charges
+            citySelect.addEventListener('change', calculateTotals);
+
+            // Toggle active class on payment options
+            const paymentRadios = document.querySelectorAll('input[name="payment"]');
+            paymentRadios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
+                    e.target.closest('.payment-option').classList.add('active');
+                });
+            });
+
+            // Handle Form Submit
+            document.getElementById('checkoutForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (cartData.length === 0) {
+                    alert('Your cart is empty!');
+                    return;
+                }
+
+                const subtotal = cartData.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const city = citySelect.value;
+                const delivery = deliveryRules[city] || 400;
+                const grandTotal = subtotal + delivery;
+
+                const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+
+                // Create Order Object
+                const newOrder = {
+                    id: '#ORD-' + Math.floor(Math.random() * 10000).toString().padStart(4, '0'),
+                    name: document.getElementById('firstName').value + ' ' + document.getElementById('lastName').value,
+                    phone: document.getElementById('phone').value,
+                    email: document.getElementById('email').value,
+                    address: document.getElementById('address').value,
+                    city: city,
+                    zip: document.getElementById('zip').value,
+                    payment: paymentMethod,
+                    total: grandTotal,
+                    items: cartData,
+                    status: 'Pending',
+                    statusClass: 'status-pending',
+                    date: new Date().toISOString()
+                };
+
+                // Save to LocalStorage
+                const existingOrders = JSON.parse(localStorage.getItem('alqalam_orders')) || [];
+                existingOrders.unshift(newOrder); // Add to beginning
+                localStorage.setItem('alqalam_orders', JSON.stringify(existingOrders));
+
+                // Show success message and redirect
+                const btn = e.target.querySelector('button[type="submit"]');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Processing...';
+
+                setTimeout(() => {
+                    alert('Order placed successfully! We will contact you shortly for confirmation.');
+                    localStorage.removeItem('alQalamCart'); // Clear cart
+                    window.location.href = 'index.html';
+                }, 1500);
+            });
+
+            renderSummary();
+        });
+    </script>
+</body>
+
+</html>

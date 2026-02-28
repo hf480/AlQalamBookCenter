@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Qalam Book Center | School & College Books</title>
+    <meta name="description"
+        content="Complete School & College Books Under One Roof. Al Qalam Book Center in Chunian offers books, stationery, and complete class sets.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Topbar -->
+    <div class="topbar">
+        <div class="container topbar-inner">
+            <p id="storeLocationText"><i class="fa-solid fa-location-dot"></i> Chunian, Punjab, Pakistan</p>
+            <div class="topbar-links">
+                <a href="#"><i class="fa-solid fa-truck"></i> Track Order</a>
+                <a href="#"><i class="fa-solid fa-headset"></i> Support</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Announcement Banner -->
+    <div id="announcementBanner"
+        style="display: none; background: var(--accent-gold, #FFD700); color: #000; text-align: center; padding: 10px; font-weight: 500; font-size: 0.95rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        <i class="fa-solid fa-bullhorn" style="margin-right: 8px;"></i>
+        <span id="announcementContent"></span>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="header" id="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">
+                <img id="storeLogoImg" src="" style="width: 40px; height: 40px; object-fit: contain; display: none;">
+                <div class="logo-icon" id="storeLogoIcon"><i class="fa-solid fa-book-open-reader"></i></div>
+                <div class="logo-text" id="storeLogoTextWrap">
+                    <h1 id="storeLogoPrimary">Al Qalam</h1>
+                    <span id="storeLogoSecondary">Book Center</span>
+                </div>
+            </a>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Search for books, stationery, classes..." id="searchInput">
+                <button type="button" aria-label="Search"><i class="fa-solid fa-search"></i></button>
+                <div class="search-suggestions" id="searchSuggestions"></div>
+            </div>
+
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#products">Shop</a></li>
+                    <li><a href="#about">About Us</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <button class="icon-btn mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <a href="#login" class="icon-btn user-btn">
+                    <i class="fa-regular fa-user"></i>
+                </a>
+                <a href="#cart" class="icon-btn cart-btn" id="cartBtn">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="badge" id="cartCount">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-btn" id="closeCartBtn"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cart-items" id="cartItemsContainer">
+            <!-- Cart items will be injected here -->
+            <div class="empty-cart-msg">Your cart is empty.</div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotalPrice">Rs 0</span>
+            </div>
+            <button class="btn btn-primary btn-block checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+        </div>
+        <div class="container hero-inner">
+            <div class="hero-content">
+                <span class="badge-soft">Welcome to Al Qalam</span>
+                <h1 class="hero-title" id="heroTitle">Complete School & College Books <span class="text-highlight">Under
+                        One
+                        Roof</span></h1>
+                <p class="hero-desc" id="heroSubtitle">Your trusted local partner in Chunian for premium quality
+                    stationery, school
+                    textbooks, and complete class sets. Fast delivery & cash on delivery available.</p>
+                <div class="hero-buttons">
+                    <a href="#products" class="btn btn-primary btn-lg">Shop Now <i
+                            class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#categories" class="btn btn-outline btn-lg">Explore Sets</a>
+                </div>
+                <div class="trust-indicators">
+                    <div class="trust-item"><i class="fa-solid fa-shield-halved"></i> 100% Genuine</div>
+                    <div class="trust-item"><i class="fa-solid fa-truck-fast"></i> Quick Delivery</div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <!-- A premium illustrated graphic or high-quality photo space -->
+                <div class="image-wrapper">
+                    <!-- Placeholder using a styled div matching the aesthetic -->
+                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Books and Stationery" class="hero-img">
+                    <div class="floating-card fl-1">
+                        <div class="fl-icon"><i class="fa-solid fa-star"></i></div>
+                        <div class="fl-text">
+                            <strong>4.9/5</strong>
+                            <span>Trusted by Parents</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Strip -->
+    <section class="features-strip">
+        <div class="container features-grid">
+            <div class="feature-box">
+                <div class="fb-icon"><i class="fa-solid fa-book"></i></div>
+                <div class="fb-text">
+                    <h4>Complete Sets</h4>
+                    <p>9th, 10th & College</p>
+                </div>
+            </div>
+            <div class="feature-box">
+                <div class="fb-icon"><i class="fa-solid fa-money-bill-1-wave"></i></div>
+                <div class="fb-text">
+                    <h4>Cash on Delivery</h4>
+                    <p>Pay when you receive</p>
+                </div>
+            </div>
+            <div class="feature-box">
+                <div class="fb-icon"><i class="fa-solid fa-tags"></i></div>
+                <div class="fb-text">
+                    <h4>Best Prices</h4>
+                    <p>Discounted bundles</p>
+                </div>
+            </div>
+            <div class="feature-box">
+                <div class="fb-icon"><i class="fa-solid fa-box-open"></i></div>
+                <div class="fb-text">
+                    <h4>Pre-Orders</h4>
+                    <p>For upcoming classes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section id="categories" class="section bg-light">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Browse Categories</h2>
+                <p>Find exactly what you need from our neatly organized sections</p>
+            </div>
+            <div class="categories-grid" id="categoriesContainer">
+                <!-- Categories injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Discount Banner -->
+    <section class="banner-section">
+        <div class="container">
+            <div class="banner-box">
+                <div class="banner-content">
+                    <h2>Special Academic Bundle Offer!</h2>
+                    <p>Get complete Class 9th & 10th Book Sets along with essential stationery packs.</p>
+                    <div class="banner-price">Save up to 15%</div>
+                    <button class="btn btn-white">View Bundles</button>
+                </div>
+                <div class="banner-img">
+                    <i class="fa-solid fa-boxes-packing banner-icon-large"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Products -->
+    <section id="products" class="section">
+        <div class="container">
+            <div class="section-header flex-header">
+                <div>
+                    <h2>Popular Products</h2>
+                    <p>Top picks for students this week</p>
+                </div>
+                <div class="product-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="school">School Books</button>
+                    <button class="filter-btn" data-filter="college">College Books</button>
+                    <button class="filter-btn" data-filter="stationery">Stationery</button>
+                </div>
+            </div>
+            <div class="products-grid" id="productsContainer">
+                <!-- Products injected via JS -->
+            </div>
+            <div class="text-center mt-4">
+                <button class="btn btn-outline">View All Products</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Owner Intro & About -->
+    <section id="about" class="section bg-light about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image-col">
+                    <img id="ownerImage"
+                        src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                        alt="Hamid - Owner of Al Qalam Book Center" class="owner-img">
+                    <div class="experience-badge">
+                        <span class="exp-num">10+</span>
+                        <span class="exp-text">Years of<br>Trust</span>
+                    </div>
+                </div>
+                <div class="about-text-col">
+                    <span class="badge-soft">Message from the Founder</span>
+                    <h2>Committed to Student Success in Chunian</h2>
+                    <div id="aboutUsContent">
+                        <p class="lead-text">"Education is the most powerful weapon which you can use to change the
+                            world."
+                        </p>
+                        <p>Hello, I am <strong>Hamid</strong>, owner of Al Qalam Book Center. For years, we have been
+                            serving the students, parents, and schools of Chunian with dedication. Our goal is to ensure
+                            every student has access to the right books and quality stationery without any hassle.</p>
+                        <p>We pride ourselves on providing complete class sets, from primary to college levels, saving
+                            parents time and effort. Welcome to your local, professional, and reliable educational
+                            partner.
+                        </p>
+                    </div>
+                    <div class="signature">Hamid.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>What Parents & Students Say</h2>
+                <p>Trusted by the community of Chunian</p>
+            </div>
+            <div class="testimonials-grid" id="reviewsContainer">
+                <!-- Reviews injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter & Pre-order -->
+    <section class="newsletter-section">
+        <div class="container newsletter-inner">
+            <div class="nl-text">
+                <h2>Be Ready for the New Session!</h2>
+                <p>Subscribe to get low stock alerts and exclusive pre-order discounts for upcoming classes.</p>
+            </div>
+            <div class="nl-form">
+                <input type="email" placeholder="Enter your email address">
+                <button class="btn btn-primary">Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col brand-col">
+                    <a href="#" class="logo footer-logo">
+                        <img id="footerLogoImg" src=""
+                            style="width: 40px; height: 40px; object-fit: contain; margin-bottom: 10px; display: none;">
+                        <div class="logo-icon" id="footerLogoIcon"><i class="fa-solid fa-book-open-reader"></i></div>
+                        <div class="logo-text" id="footerLogoTextWrap">
+                            <h3 id="footerLogoPrimary">Al Qalam</h3>
+                            <span id="footerLogoSecondary">Book Center</span>
+                        </div>
+                    </a>
+                    <p class="footer-desc" id="footerDesc">Your ultimate destination for school books, college course
+                        materials, and
+                        premium stationery in Chunian.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" id="footerWhatsappSocial"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-col links-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#categories">Shop by Category</a></li>
+                        <li><a href="#about">About Hamid</a></li>
+                        <li><a href="#">Blog & Study Tips</a></li>
+                        <li><a href="#">Track Order</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col links-col">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns & Refunds</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col contact-col">
+                    <h4>Contact Us</h4>
+                    <ul class="contact-info">
+                        <li><i class="fa-solid fa-location-dot"></i> <span id="footerAddress">Main Bazaar, Chunian,
+                                Punjab, Pakistan</span></li>
+                        <li><i class="fa-solid fa-phone"></i> <span id="footerPhone">+92 300 1234567</span></li>
+                        <li><i class="fa-solid fa-envelope"></i> <span id="footerEmail">info@alqalam.com.pk</span></li>
+                        <li><i class="fa-solid fa-clock"></i> <span id="footerHours">Mon - Sat: 9:00 AM - 9:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Al Qalam Book Center. All Rights Reserved.</p>
+                <div class="payment-methods">
+                    <i class="fa-solid fa-money-bill-1-wave"></i> Cash on Delivery
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/923001234567?text=Hello%20Hamid!%20I%20have%20an%20inquiry%20about%20books." target="_blank"
+        class="whatsapp-float" id="whatsappFloatBtn">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+
+</html>
